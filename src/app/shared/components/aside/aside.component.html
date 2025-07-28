@@ -1,0 +1,32 @@
+<h2 class="text-2xl">Paginas</h2>
+<hr />
+<h3 class="p-4 pb-2 text-xs opacity-60 tracking-wide">Reactive</h3>
+<ul class="shadow-md first:rounded-t-lg last:rounded-b-lg">
+  @for (route of reactiveRoutes; track route.path) {
+  <li class="px-3.5 py-2.5 hover:bg-base-200" routerLinkActive="bg-base-200">
+    <a [routerLink]="route.path" routerLinkActive="text-primary">
+      {{ route.title }}
+    </a>
+  </li>
+  }
+</ul>
+<h3 class="p-4 pb-2 text-xs opacity-60 tracking-wide">Auth</h3>
+<ul class="shadow-md first:rounded-t-lg last:rounded-b-lg">
+  @for (route of authRoutes; track route.path) {
+  <li class="px-3.5 py-2.5 hover:bg-base-200" routerLinkActive="bg-base-200">
+    <a [routerLink]="route.path" routerLinkActive="text-primary">
+      {{ route.title }}
+    </a>
+  </li>
+  }
+</ul>
+<h3 class="p-4 pb-2 text-xs opacity-60 tracking-wide">Country</h3>
+<ul class="shadow-md first:rounded-t-lg last:rounded-b-lg">
+  @for (route of countryRoutes; track route.path) {
+  <li class="px-3.5 py-2.5 hover:bg-base-200" routerLinkActive="bg-base-200">
+    <a [routerLink]="route.path" routerLinkActive="text-primary">
+      {{ route.title }}
+    </a>
+  </li>
+  }
+</ul>

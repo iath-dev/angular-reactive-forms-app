@@ -1,0 +1,104 @@
+<div class="card">
+  <div class="card-title">
+    <h2>Validaciones Reactivas</h2>
+  </div>
+  <div class="card-body">
+    <form autocomplete="off">
+      <!-- Nombre -->
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend">Nombre y apellido</legend>
+        <input
+          type="text"
+          class="input input-primary w-full max-w-sm"
+          placeholder="Nombre del usuario"
+        />
+
+        <span class="text-error text-sm">
+          Debe de ser en formato de nombre y apellido
+        </span>
+      </fieldset>
+
+      <!-- Email -->
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend">Email</legend>
+        <input
+          type="email"
+          class="input input-primary w-full max-w-sm"
+          placeholder="Email del usuario"
+        />
+        <span class="text-error text-sm"> mensaje de error del email </span>
+      </fieldset>
+
+      <!-- Username -->
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend">Username</legend>
+        <input
+          type="text"
+          class="input input-primary w-full max-w-sm"
+          placeholder="Nombre código del usuario"
+        />
+        <span class="text-error text-sm">
+          El username no puede ser Strider
+        </span>
+      </fieldset>
+
+      <!-- Password -->
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend">Password</legend>
+        <input
+          type="password"
+          class="input input-primary w-full max-w-sm"
+          placeholder="Password de su cuenta"
+        />
+
+        <span class="text-error text-sm">
+          La contraseña debe de ser mayor de 6 caracteres.
+        </span>
+      </fieldset>
+
+      <!-- Password2 -->
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend">Confirmar</legend>
+        <input
+          type="password"
+          class="input input-primary w-full max-w-sm"
+          placeholder="Confirmar la contraseña"
+        />
+
+        <span class="text-error text-sm">
+          Las contraseñas deben de ser iguales
+        </span>
+      </fieldset>
+
+      <div class="card-actions justify-end">
+        <button class="btn btn-primary" type="submit">Crear</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">Status</div>
+  <div class="card-body mockup-code">
+    <h2>Form Valid:</h2>
+    <h2>Form Status:</h2>
+    <h2>Form Pending:</h2>
+    <h2>Form errors</h2>
+    <pre>{{ "formulario" | json }}</pre>
+
+    <h5>Nombre</h5>
+    <pre>{{ "formulario" | json }}</pre>
+
+    <h5>Email</h5>
+    <pre>{{ "formulario" | json }}</pre>
+
+    <h5>Username</h5>
+    <pre>{{ "formulario" | json }}</pre>
+
+    <h5>Password</h5>
+    <pre>{{ "formulario" | json }}</pre>
+
+    <h5>Confirmar</h5>
+    <pre>{{ "formulario" | json }}</pre>
+  </div>
+</div>

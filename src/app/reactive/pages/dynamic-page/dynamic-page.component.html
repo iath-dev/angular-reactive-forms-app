@@ -1,0 +1,69 @@
+<div class="card">
+  <div class="card-title">
+    <h2 class="text-2xl font-bold">Reactivos: <small> Dinámicos </small></h2>
+  </div>
+  <div class="card-body">
+    <form autocomplete="off">
+      <!-- Nombre -->
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend font-medium text-lg">Nombre</legend>
+        <input
+          class="input input-primary w-full max-w-xs"
+          placeholder="Nombre de la persona"
+        />
+        <label class="form-text text-danger"> error message </label>
+      </fieldset>
+
+      <!-- Agregar Favorito -->
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend font-medium text-lg">Agregar</legend>
+        <div class="join">
+          <input
+            class="input input-primary w-full max-w-xs join-item"
+            placeholder="Agregar favorito"
+          />
+
+          <button class="btn btn-outline-primary join-item" type="button">
+            Agregar favorito
+          </button>
+        </div>
+      </fieldset>
+
+      <!-- Lista de Juegos Favoritos -->
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend font-medium text-lg">Favoritos</legend>
+        <div class="join">
+          <input class="input input-primary w-full max-w-xs join-item" />
+
+          <button class="btn btn-outline-danger join-item" type="button">
+            Eliminar
+          </button>
+        </div>
+        <label class="form-text text-danger"> Este campo es requerido </label>
+      </fieldset>
+
+      <div class="card-actions justify-end">
+        <button type="submit" class="btn btn-primary float-end">
+          <!-- [disabled]="myForm.invalid" -->
+          Guardar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body mockup-code">
+    <span>Valid</span>
+    <pre>{{ "object" | json }}</pre>
+    <br />
+
+    <span>Value</span>
+    <pre>{{ "object" | json }}</pre>
+    <br />
+
+    <span>Agregar Juego</span>
+    <pre>{{ "object" | json }}</pre>
+    <pre>{{ "object" | json }}</pre>
+  </div>
+</div>

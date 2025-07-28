@@ -1,2 +1,10 @@
-<h1>Hola Mundo</h1>
-<router-outlet></router-outlet>
+<section class="container mx-auto py-2">
+  <div class="grid grid-cols-3">
+    <div class="col-span-2">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="col-span-3 md:col-span-1">
+      <app-aside></app-aside>
+    </div>
+  </div>
+</section>

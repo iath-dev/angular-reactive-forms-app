@@ -1,0 +1,86 @@
+<div class="card">
+  <div class="card-title">
+    <h2 class="text-2xl">Reactivos: Switches</h2>
+  </div>
+  <div class="card-body">
+    <form autocomplete="off">
+      <!-- Radio -->
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend">Género</legend>
+        <div class="flex items-center gap-2">
+          <input
+            class="radio radio-primary radio-sm"
+            type="radio"
+            value="M"
+            id="radioMasculino"
+          />
+          <label for="radioMasculino"> Masculino </label>
+        </div>
+        <div class="flex items-center gap-2">
+          <input
+            class="radio radio-primary radio-sm"
+            type="radio"
+            value="F"
+            id="radioFemenino"
+          />
+          <label for="radioFemenino"> Femenino </label>
+        </div>
+      </fieldset>
+
+      <!-- Switches -->
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend">Notificaciones</legend>
+        <label class="label" for="flexSwitchCheckChecked">
+          <input
+            class="toggle toggle-primary"
+            type="checkbox"
+            id="flexSwitchCheckChecked"
+          />
+          Quiero recibir notificaciones
+        </label>
+      </fieldset>
+
+      <!-- Switches -->
+      <fieldset class="row mb-3">
+        <label class="label" for="flexCheckDefault">
+          <input
+            class="toggle toggle-primary"
+            type="checkbox"
+            id="flexCheckDefault"
+          />
+          Términos y condiciones de uso
+        </label>
+        <div>
+          <label class="text-error text-sm">
+            Debe de aceptar las condiciones de uso
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="card-actions justify-end">
+        <button class="btn btn-primary" type="submit">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body mockup-code">
+    <h5>Valor del formulario</h5>
+    <pre>{{ "object" | json }}</pre>
+    <br />
+
+    <h5>Persona</h5>
+    <pre>{{ "object" | json }}</pre>
+    <br />
+
+    <h5>Valid</h5>
+    <pre>{{ "object" | json }}</pre>
+
+    <!-- <h5>Términos</h5> -->
+    <!-- <pre>{{ myForm.controls?.terminos?.errors | json }}</pre> -->
+
+    <!-- <br>
+    <pre>Condiciones: </pre> -->
+  </div>
+</div>

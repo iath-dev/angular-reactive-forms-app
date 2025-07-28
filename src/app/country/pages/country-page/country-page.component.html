@@ -1,0 +1,54 @@
+<div class="card">
+  <div class="card-title">
+    <h2 class="text-3xl font-bold">Reactivos: Básicos</h2>
+  </div>
+  <div class="card-body">
+    <form autocomplete="off">
+      <!-- Campo de producto -->
+      <fieldset class="fieldset w-full max-w-sm mb-4">
+        <legend class="fieldset-legend text-base font-medium">Producto</legend>
+        <input
+          type="text"
+          class="input input-primary w-full max-w-xs"
+          placeholder="Nombre del producto"
+        />
+      </fieldset>
+
+      <!-- Campo de precio -->
+      <fieldset class="fieldset w-full max-w-sm mb-4">
+        <legend class="fieldset-legend text-base font-medium">Precio</legend>
+        <input
+          type="number"
+          class="input input-primary w-full max-w-xs"
+          placeholder="Precio del producto"
+        />
+      </fieldset>
+
+      <!-- Campo de existencias -->
+      <fieldset class="fieldset w-full max-w-sm mb-4">
+        <legend class="fieldset-legend text-base font-medium">
+          Existencias
+        </legend>
+        <input
+          type="number"
+          class="input input-primary w-full max-w-xs"
+          placeholder="Existencias del producto"
+        />
+      </fieldset>
+
+      <div class="card-actions justify-end">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body mockup-code">
+    <h3 class="text-2xl">Formulario</h3>
+    <code>
+      <!-- {{ 'myForm.value' | json }} -->
+    </code>
+    <pre>is form valid: {{ "myForm.valid" }}</pre>
+  </div>
+</div>
