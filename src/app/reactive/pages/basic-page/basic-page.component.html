@@ -3,23 +3,39 @@
     <h2 class="text-3xl">Reactivos: Básicos</h2>
   </div>
   <div class="card-body">
-    <form autocomplete="off">
+    <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSave()">
       <!-- Campo de producto -->
       <fieldset class="fieldset">
         <legend class="fieldset-legend">Producto</legend>
-        <input type="text" class="input" placeholder="Nombre del producto" />
-
+        <input
+          type="text"
+          class="input"
+          formControlName="name"
+          [class.input-error]="formUtils.isValidField(myForm, 'name')"
+          placeholder="Nombre del producto"
+        />
+        @if ( formUtils.isValidField(myForm, 'name')) {
         <span class="label text-error">
-          <!-- Debe de ser de 3 letras -->
-          error message
+          {{ formUtils.getFieldError(myForm, "name") }}
         </span>
+        }
       </fieldset>
 
       <!-- Campo de producto -->
       <fieldset class="fieldset">
         <legend class="fieldset-legend">Precio</legend>
-        <input type="number" class="input" placeholder="Precio del producto" />
-        <span class="label text-error"> El precio debe de ser 0 o mayor </span>
+        <input
+          type="number"
+          class="input"
+          formControlName="price"
+          [class.input-error]="formUtils.isValidField(myForm, 'price')"
+          placeholder="Precio del producto"
+        />
+        @if ( formUtils.isValidField(myForm, 'price')) {
+        <span class="label text-error">
+          {{ formUtils.getFieldError(myForm, "price") }}
+        </span>
+        }
       </fieldset>
 
       <!-- Campo de existencias -->
@@ -28,16 +44,26 @@
         <input
           type="number"
           class="input"
+          formControlName="inStorage"
+          [class.input-error]="formUtils.isValidField(myForm, 'inStorage')"
           placeholder="Existencias del producto"
         />
 
+        @if ( formUtils.isValidField(myForm, 'inStorage')) {
         <span class="label text-error">
-          Las existencias deben de ser 0 o mayor
+          {{ formUtils.getFieldError(myForm, "inStorage") }}
         </span>
+        }
       </fieldset>
 
       <div class="card-actions justify-end">
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!myForm.valid"
+        >
+          Guardar
+        </button>
       </div>
     </form>
   </div>
@@ -46,21 +72,23 @@
 <div class="card">
   <div class="card-body mockup-code w-full">
     <span>Valid</span>
-    <pre>{{ "objeto" | json }}</pre>
+    <pre>{{ myForm.valid | json }}</pre>
 
     <span>Pristine</span>
-    <pre>{{ "objeto" | json }}</pre>
+    <pre>{{ myForm.pristine | json }}</pre>
 
     <span>Touched</span>
-    <pre>{{ "objeto" | json }}</pre>
+    <pre>{{ myForm.touched | json }}</pre>
 
     <span>Value</span>
-    <pre>{{ "objeto" | json }}</pre>
+    <code>
+      {{ myForm.value | json }}
+    </code>
 
     <span>Precio</span>
-    <pre>{{ "objeto" | json }}</pre>
+    <pre>{{ myForm.controls["price"].value | json }}</pre>
 
     <span>Producto</span>
-    <pre>{{ "objeto" | json }}</pre>
+    <pre>{{ myForm.controls["name"].value | json }}</pre>
   </div>
 </div>

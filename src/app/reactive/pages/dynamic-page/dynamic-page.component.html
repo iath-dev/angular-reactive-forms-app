@@ -3,15 +3,20 @@
     <h2 class="text-2xl font-bold">Reactivos: <small> Dinámicos </small></h2>
   </div>
   <div class="card-body">
-    <form autocomplete="off">
+    <form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSave()">
       <!-- Nombre -->
       <fieldset class="fieldset">
         <legend class="fieldset-legend font-medium text-lg">Nombre</legend>
         <input
           class="input input-primary w-full max-w-xs"
           placeholder="Nombre de la persona"
+          formControlName="name"
         />
-        <label class="form-text text-danger"> error message </label>
+        @if ( formUtils.isValidField(myForm, 'name')) {
+        <label class="form-text text-error">
+          {{ formUtils.getFieldError(myForm, "name") }}
+        </label>
+        }
       </fieldset>
 
       <!-- Agregar Favorito -->
@@ -20,33 +25,64 @@
         <div class="join">
           <input
             class="input input-primary w-full max-w-xs join-item"
+            [formControl]="newFavorite"
             placeholder="Agregar favorito"
+            (keyup.enter)="addFavorite()"
           />
 
-          <button class="btn btn-outline-primary join-item" type="button">
+          <button
+            class="btn btn-outline btn-primary join-item"
+            type="button"
+            (click)="addFavorite()"
+          >
             Agregar favorito
           </button>
         </div>
+        @if (newFavorite.invalid && newFavorite.touched) {
+        <span class="label text-error">
+          {{ formUtils.getErrorMessage(newFavorite.errors ?? {}) }}
+        </span>
+        }
       </fieldset>
 
       <!-- Lista de Juegos Favoritos -->
       <fieldset class="fieldset">
         <legend class="fieldset-legend font-medium text-lg">Favoritos</legend>
-        <div class="join">
-          <input class="input input-primary w-full max-w-xs join-item" />
+        <div class="flex flex-col gap-2" formArrayName="favorites">
+          @for (favorite of favorites.controls; track $index; let i = $index) {
+          <div class="flex flex-col">
+            <div class="join">
+              <input
+                class="input input-primary w-full max-w-xs join-item"
+                [formControlName]="i"
+              />
 
-          <button class="btn btn-outline-danger join-item" type="button">
-            Eliminar
-          </button>
+              <button
+                class="btn btn-outline btn-error join-item"
+                type="button"
+                (click)="removeFavorite(i)"
+              >
+                Eliminar
+              </button>
+            </div>
+            @if (formUtils.isValidFieldInArray(favorites, i)) {
+            <label class="label text-error">
+              {{ formUtils.getFieldErrorInArray(favorites, i) }}
+            </label>
+            }
+          </div>
+          }
         </div>
-        <label class="form-text text-danger"> Este campo es requerido </label>
       </fieldset>
 
+      <div class="alert alert-error alert-soft mb-2">
+        <span>
+          {{ formUtils.getFieldError(myForm, "favorites") }}
+        </span>
+      </div>
+
       <div class="card-actions justify-end">
-        <button type="submit" class="btn btn-primary float-end">
-          <!-- [disabled]="myForm.invalid" -->
-          Guardar
-        </button>
+        <button type="submit" class="btn btn-primary float-end">Guardar</button>
       </div>
     </form>
   </div>
@@ -55,15 +91,15 @@
 <div class="card">
   <div class="card-body mockup-code">
     <span>Valid</span>
-    <pre>{{ "object" | json }}</pre>
+    <pre>{{ myForm.valid | json }}</pre>
     <br />
 
     <span>Value</span>
-    <pre>{{ "object" | json }}</pre>
+    <pre>{{ myForm.value | json }}</pre>
     <br />
 
     <span>Agregar Juego</span>
-    <pre>{{ "object" | json }}</pre>
-    <pre>{{ "object" | json }}</pre>
+    <pre>{{ myForm.valid | json }}</pre>
+    <pre>{{ myForm.valid | json }}</pre>
   </div>
 </div>
