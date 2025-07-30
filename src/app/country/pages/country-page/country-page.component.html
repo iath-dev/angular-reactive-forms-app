@@ -1,54 +1,81 @@
-<div class="card">
+<h1 class="text-3xl text-primary my-2">Selectores anidados</h1>
+
+<form [formGroup]="form" (submit)="submit()">
+  <!-- Region -->
+  <div>
+    <fieldset class="fieldset">
+      <legend class="fieldset-legend">Continente:</legend>
+      <select
+        formControlName="region"
+        class="select select-primary select-md"
+        placeholder="-- Seleccione Continente --"
+      >
+        <option value="">-- Seleccione Continente --</option>
+
+        @for (region of regions; track region) {
+        <option [value]="region">
+          {{ region }}
+        </option>
+        }
+      </select>
+    </fieldset>
+  </div>
+
+  <!-- Countries -->
+
+  <div>
+    <fieldset class="fieldset">
+      <legend class="fieldset-legend">País:</legend>
+      <select
+        formControlName="country"
+        class="select select-primary select-md"
+        placeholder="-- Seleccione País --"
+      >
+        <option value="">-- Seleccione País --</option>
+
+        @for (country of countries(); track country.cca3) {
+        <option [value]="country.cca3">
+          {{ country.name.common }}
+        </option>
+        }
+      </select>
+    </fieldset>
+  </div>
+
+  <!-- Countries -->
+
+  <div>
+    <fieldset class="fieldset">
+      <legend class="fieldset-legend">Fronteras:</legend>
+      <select
+        formControlName="border"
+        class="select select-primary select-md"
+        placeholder="-- Seleccione frontera --"
+      >
+        <option value="">-- Seleccione la frontera --</option>
+
+        @for (country of borders(); track country.cca3) {
+        <option [value]="country.cca3">
+          {{ country.name.common }}
+        </option>
+        }
+      </select>
+    </fieldset>
+  </div>
+</form>
+
+<div class="card mt-2">
   <div class="card-title">
-    <h2 class="text-3xl font-bold">Reactivos: Básicos</h2>
+    <h3 class="text-secondary text-xl">Formulario</h3>
   </div>
   <div class="card-body">
-    <form autocomplete="off">
-      <!-- Campo de producto -->
-      <fieldset class="fieldset w-full max-w-sm mb-4">
-        <legend class="fieldset-legend text-base font-medium">Producto</legend>
-        <input
-          type="text"
-          class="input input-primary w-full max-w-xs"
-          placeholder="Nombre del producto"
-        />
-      </fieldset>
-
-      <!-- Campo de precio -->
-      <fieldset class="fieldset w-full max-w-sm mb-4">
-        <legend class="fieldset-legend text-base font-medium">Precio</legend>
-        <input
-          type="number"
-          class="input input-primary w-full max-w-xs"
-          placeholder="Precio del producto"
-        />
-      </fieldset>
-
-      <!-- Campo de existencias -->
-      <fieldset class="fieldset w-full max-w-sm mb-4">
-        <legend class="fieldset-legend text-base font-medium">
-          Existencias
-        </legend>
-        <input
-          type="number"
-          class="input input-primary w-full max-w-xs"
-          placeholder="Existencias del producto"
-        />
-      </fieldset>
-
-      <div class="card-actions justify-end">
-        <button type="submit" class="btn btn-primary">Guardar</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<div class="card">
-  <div class="card-body mockup-code">
-    <h3 class="text-2xl">Formulario</h3>
-    <code>
-      <!-- {{ 'myForm.value' | json }} -->
-    </code>
-    <pre>is form valid: {{ "myForm.valid" }}</pre>
+    <div class="mockup-code">
+      <pre>
+        <code>
+          {{ form.value | json }}
+        </code>
+      </pre>
+      <pre class="text-accent">is form valid: {{ form.valid }}</pre>
+    </div>
   </div>
 </div>
