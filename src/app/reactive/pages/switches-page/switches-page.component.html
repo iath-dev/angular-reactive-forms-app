@@ -3,7 +3,7 @@
     <h2 class="text-2xl">Reactivos: Switches</h2>
   </div>
   <div class="card-body">
-    <form autocomplete="off">
+    <form autocomplete="off" [formGroup]="form" (ngSubmit)="submit()">
       <!-- Radio -->
       <fieldset class="fieldset">
         <legend class="fieldset-legend">Género</legend>
@@ -12,18 +12,20 @@
             class="radio radio-primary radio-sm"
             type="radio"
             value="M"
-            id="radioMasculino"
+            id="radioMale"
+            formControlName="genre"
           />
-          <label for="radioMasculino"> Masculino </label>
+          <label for="radioMale"> Masculino </label>
         </div>
         <div class="flex items-center gap-2">
           <input
             class="radio radio-primary radio-sm"
             type="radio"
             value="F"
-            id="radioFemenino"
+            id="radioFemale"
+            formControlName="genre"
           />
-          <label for="radioFemenino"> Femenino </label>
+          <label for="radioFemale"> Femenino </label>
         </div>
       </fieldset>
 
@@ -35,6 +37,7 @@
             class="toggle toggle-primary"
             type="checkbox"
             id="flexSwitchCheckChecked"
+            formControlName="wantNotifications"
           />
           Quiero recibir notificaciones
         </label>
@@ -47,14 +50,15 @@
             class="toggle toggle-primary"
             type="checkbox"
             id="flexCheckDefault"
+            formControlName="acceptTerms"
           />
           Términos y condiciones de uso
         </label>
-        <div>
-          <label class="text-error text-sm">
-            Debe de aceptar las condiciones de uso
-          </label>
+        @if (formUtils.isValidField(form, "acceptTerms")) {
+        <div class="alert alert-error alert-soft mt-4">
+          <span> Debe de aceptar las condiciones de uso </span>
         </div>
+        }
       </fieldset>
 
       <div class="card-actions justify-end">
@@ -67,7 +71,7 @@
 <div class="card">
   <div class="card-body mockup-code">
     <h5>Valor del formulario</h5>
-    <pre>{{ "object" | json }}</pre>
+    <pre>{{ form.value | json }}</pre>
     <br />
 
     <h5>Persona</h5>
@@ -75,7 +79,7 @@
     <br />
 
     <h5>Valid</h5>
-    <pre>{{ "object" | json }}</pre>
+    <pre>{{ form.valid | json }}</pre>
 
     <!-- <h5>Términos</h5> -->
     <!-- <pre>{{ myForm.controls?.terminos?.errors | json }}</pre> -->

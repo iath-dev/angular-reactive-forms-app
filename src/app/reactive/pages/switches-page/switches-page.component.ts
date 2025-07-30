@@ -1,9 +1,25 @@
 import { JsonPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormUtils } from '../../../utils/form-utils';
 
 @Component({
-  selector: 'app-switches-page',
-  imports: [JsonPipe],
+  imports: [JsonPipe, ReactiveFormsModule],
   templateUrl: './switches-page.component.html',
 })
-export class SwitchesPageComponent {}
+export class SwitchesPageComponent {
+  private fb = inject(FormBuilder);
+
+  formUtils = FormUtils;
+
+  form = this.fb.group({
+    genre: ['M', [Validators.required]],
+    wantNotifications: [true, [Validators.required]],
+    acceptTerms: [false, [Validators.requiredTrue]],
+  });
+
+  public submit() {
+    console.log(this.form.value);
+    this.form.markAllAsTouched();
+  }
+}

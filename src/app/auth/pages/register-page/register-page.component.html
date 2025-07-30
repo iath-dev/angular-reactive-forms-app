@@ -3,7 +3,7 @@
     <h2>Validaciones Reactivas</h2>
   </div>
   <div class="card-body">
-    <form autocomplete="off">
+    <form autocomplete="off" [formGroup]="form" (ngSubmit)="submit()">
       <!-- Nombre -->
       <fieldset class="fieldset">
         <legend class="fieldset-legend">Nombre y apellido</legend>
@@ -11,11 +11,16 @@
           type="text"
           class="input input-primary w-full max-w-sm"
           placeholder="Nombre del usuario"
+          formControlName="name"
         />
-
-        <span class="text-error text-sm">
-          Debe de ser en formato de nombre y apellido
-        </span>
+        @if(formUtils.isValidField(form, 'name')) {
+        <div class="alert alert-error alert-soft alrt-sm">
+          <span>
+            <!-- Debe de ser en formato de nombre y apellido -->
+            {{ formUtils.getFieldError(form, "name") }}
+          </span>
+        </div>
+        }
       </fieldset>
 
       <!-- Email -->
@@ -25,8 +30,13 @@
           type="email"
           class="input input-primary w-full max-w-sm"
           placeholder="Email del usuario"
+          formControlName="email"
         />
-        <span class="text-error text-sm"> mensaje de error del email </span>
+        @if (formUtils.isValidField(form, "email")) {
+        <div class="alert alert-error alert-soft">
+          <span> {{ formUtils.getFieldError(form, "email") }} </span>
+        </div>
+        }
       </fieldset>
 
       <!-- Username -->
@@ -36,10 +46,13 @@
           type="text"
           class="input input-primary w-full max-w-sm"
           placeholder="Nombre código del usuario"
+          formControlName="username"
         />
-        <span class="text-error text-sm">
-          El username no puede ser Strider
-        </span>
+        @if (formUtils.isValidField(form, "username")) {
+        <div class="alert alert-error alert-soft">
+          <span> {{ formUtils.getFieldError(form, "username") }} </span>
+        </div>
+        }
       </fieldset>
 
       <!-- Password -->
@@ -49,11 +62,13 @@
           type="password"
           class="input input-primary w-full max-w-sm"
           placeholder="Password de su cuenta"
+          formControlName="password"
         />
-
-        <span class="text-error text-sm">
-          La contraseña debe de ser mayor de 6 caracteres.
-        </span>
+        @if (formUtils.isValidField(form, "password")) {
+        <div class="alert alert-error alert-soft">
+          <span> {{ formUtils.getFieldError(form, "password") }} </span>
+        </div>
+        }
       </fieldset>
 
       <!-- Password2 -->
@@ -63,12 +78,20 @@
           type="password"
           class="input input-primary w-full max-w-sm"
           placeholder="Confirmar la contraseña"
+          formControlName="confirmPassword"
         />
-
-        <span class="text-error text-sm">
-          Las contraseñas deben de ser iguales
-        </span>
+        @if (formUtils.isValidField(form, "confirmPassword")) {
+        <div class="alert alert-error alert-soft">
+          <span> {{ formUtils.getFieldError(form, "confirmPassword") }} </span>
+        </div>
+        }
       </fieldset>
+
+      @if (form.errors && form.touched) {
+      <div class="alert alert-error alert-soft mt-5">
+        <span> {{ formUtils.getErrorMessage(form.errors) }} </span>
+      </div>
+      }
 
       <div class="card-actions justify-end">
         <button class="btn btn-primary" type="submit">Crear</button>
@@ -80,25 +103,25 @@
 <div class="card">
   <div class="card-title">Status</div>
   <div class="card-body mockup-code">
-    <h2>Form Valid:</h2>
-    <h2>Form Status:</h2>
-    <h2>Form Pending:</h2>
+    <h2>Form Valid: {{ form.valid }}</h2>
+    <h2>Form Status: {{ form.status }}</h2>
+    <h2>Form Pending: {{ form.pending }}</h2>
     <h2>Form errors</h2>
-    <pre>{{ "formulario" | json }}</pre>
+    <pre>{{ form.errors | json }}</pre>
 
     <h5>Nombre</h5>
-    <pre>{{ "formulario" | json }}</pre>
+    <pre>{{ form.controls["name"].errors | json }}</pre>
 
     <h5>Email</h5>
-    <pre>{{ "formulario" | json }}</pre>
+    <pre>{{ form.controls["email"].errors | json }}</pre>
 
     <h5>Username</h5>
-    <pre>{{ "formulario" | json }}</pre>
+    <pre>{{ form.controls["username"].errors | json }}</pre>
 
     <h5>Password</h5>
-    <pre>{{ "formulario" | json }}</pre>
+    <pre>{{ form.controls["password"].errors | json }}</pre>
 
     <h5>Confirmar</h5>
-    <pre>{{ "formulario" | json }}</pre>
+    <pre>{{ form.controls["confirmPassword"].errors | json }}</pre>
   </div>
 </div>
